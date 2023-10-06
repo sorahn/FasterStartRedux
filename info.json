@@ -1,9 +1,9 @@
 {
-  "name": "FasterStart",
-  "version": "1.1.1",
-  "title": "FasterStart",
-  "author": "magu5026",
+  "name": "FasterStartRedux",
+  "version": "0.0.3",
+  "title": "FasterStartRedux",
+  "author": "sorahn",
   "factorio_version": "1.1",
-  "description": "A starter kit with a small modular armor with a small fusion reactor, night vision, exoskeleton, roboport and 25 fusion construction robots.",
+  "description": "A starter kit with a small modular armor with a small fusion reactor, night vision, exoskeleton, 2 roboports and 55 fusion construction robots.  Forked from FasterStart by magu5026.",
   "dependencies": ["base >= 1.1.1"]
 }
