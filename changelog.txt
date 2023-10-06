@@ -1,83 +1,23 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.1.1
-Date: 2020-12-18
+Version: 0.0.3
+Date: 2023-10-05
   Bugfixes:
-    - Fixed an issue where the robots were missing.
+    - Move all the items to the ship in case some pafts of the ship are missing.
+    - Update fusion robots to let them go a _little_ faster with the research.
+
 ---------------------------------------------------------------------------------------------------
-Version: 1.1.0
-Date: 2020-11-27
-  Major Features:
-    - Release 1.1.
----------------------------------------------------------------------------------------------------
-Version: 1.0.2
-Date: 2020-11-27
-  Changes:
-    - Code optimized.
----------------------------------------------------------------------------------------------------
-Version: 1.0.1
-Date: 2020-08-15
-  Major Features:
-    - Update for Factorio 1.0.
-    - Added settings to skip the new freeplay intro.
----------------------------------------------------------------------------------------------------
-Version: 0.18.2
-Date: 2020-03-14
+Version: 0.0.2
+Date: 2023-09-13
   Bugfixes:
-    - Fixed a sprite issue on low graphics settings.
+    - Move armor to the ship if you don't skip the intro.
+    - default crash site to on, intro to off.
+
 ---------------------------------------------------------------------------------------------------
-Version: 0.18.1
-Date: 2020-01-24
-  Major Features:
-    - Update for Factorio 0.18.
----------------------------------------------------------------------------------------------------
-Version: 0.17.5
-Date: 2019-05-31
-  Bugfixes:
-    - Fixed a migration issue.
----------------------------------------------------------------------------------------------------
-Version: 0.17.4
-Date: 2019-05-03
-  Changes:
-    - Update for factorio 0.17.35.
----------------------------------------------------------------------------------------------------
-Version: 0.17.3
-Date: 2019-03-10
-  Changes:
-    - Fixed the version issue. You have to update it manually. I'm sorry :(
----------------------------------------------------------------------------------------------------
-Version: 0.17.2
-Date: 2019-03-02
-  Bugfixes:
-    - Fixed a bug that occurred when the player already had armor.
----------------------------------------------------------------------------------------------------
-Version: 0.17.1
-Date: 2019-03-01
-  Major Features:
-    - Update for Factorio 0.17.
----------------------------------------------------------------------------------------------------
-Version: 0.16.4
-Date: 2018-05-27
-  Bugfixes:
-    - Fixed multiplayer bug.
----------------------------------------------------------------------------------------------------
-Version: 0.16.3
-Date: 2018-02-19
-  Bugfixes:
-    - Fixed multiplayer fix.
----------------------------------------------------------------------------------------------------
-Version: 0.16.2
-Date: 2018-02-26
-  Changes:
-    - Multiplayer compatibility.
-  Bugfixes:
-    - Fixed multiplayer bug
----------------------------------------------------------------------------------------------------
-Version: 0.16.1
-Date: 2017-12-27
-  Major Features:
-    - Update for Factorio 0.16.
----------------------------------------------------------------------------------------------------
-Version: 0.15.0
-Date: 2017-07-16
-  Major Features:
-    - Added a starter kit with a small modular armor with a small fusion reactor, night vision, exoskeleton, roboport and 25 fusion construction robots.
+Version: 0.0.1
+Date: 2023-09-13
+  Initial Version:
+    - Shrink Fusion Reactor to 2x2
+    - Give 50 robots
+    - Give 2 roboports
+    - Update Robot initial and max speed.
+      - They go as fast as regular bots at the highest level of non-infinite research.
