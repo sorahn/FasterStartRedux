@@ -23,17 +23,14 @@ function OnInit()
         remote.call("freeplay", "set_disable_crashsite", settings.startup['disable-crashsite'].value)
         remote.call("freeplay", "set_skip_intro", settings.startup['skip-intro'].value)
 
-        if not settings.startup['disable-crashsite'].value then
-            local ship_items = remote.call("freeplay", "get_ship_items")
-            ship_items['fusion-construction-robot'] = (ship_items['fusion-construction-robot'] or 0) + 50
-            ship_items['mini-power-armor'] = (ship_items['mini-power-armor'] or 0) + 1
-            ship_items['mini-fusion-reactor-equipment'] = (ship_items['mini-fusion-reactor-equipment'] or 0) + 1
-            ship_items['night-vision-equipment'] = (ship_items['night-vision-equipment'] or 0) + 1
-            ship_items['exoskeleton-equipment'] = (ship_items['exoskeleton-equipment'] or 0) + 1
-            ship_items['personal-roboport-mk2-equipment'] = (ship_items['personal-roboport-mk2-equipment'] or 0) + 2
-
-            remote.call("freeplay", "set_ship_items", ship_items)
-        end
+        local items = remote.call("freeplay", "get_created_items")
+        items["fusion-construction-robot"] = 50
+        items["mini-power-armor"] = 1
+        items["mini-fusion-reactor-equipment"] = 1
+        items["night-vision-equipment"] = 1
+        items["exoskeleton-equipment"] = 1
+        items["personal-roboport-mk2-equipment"] = 2
+        remote.call("freeplay", "set_created_items", items)
     end
 end
 
@@ -51,12 +48,28 @@ end
 
 -- script.on_configuration_changed(OnConfigurationChanged)
 
+function OnNthTick(event)
+    local deregister = true
+
+    for k, player in pairs(game.players) do
+        if not Contains(global.PlayerList, player) then
+            GiveArmor(player)
+            deregister = false
+        end
+    end
+
+    if deregister then
+        script.on_nth_tick(69, nil)
+    end
+end
+
 function OnPlayerSpawned(event)
     local player = game.get_player(event.player_index)
     GiveArmor(player)
 end
 
 script.on_event({ defines.events.on_player_joined_game, defines.events.on_player_created }, OnPlayerSpawned)
+script.on_nth_tick(69, OnNthTick)
 
 function GiveArmor(player)
     if Contains(global.PlayerList, player) then
@@ -67,49 +80,27 @@ function GiveArmor(player)
     end
 
     local armor_inventory = player.character.get_inventory(defines.inventory.character_armor)
-    local player_inventory = player.character.get_inventory(defines.inventory.character_main)
-
-    if (armor_inventory.get_item_count("mini-power-armor") > 0 or
-            player_inventory.get_item_count("fusion-construction-robot") > 0) then
-        table.insert(global.PlayerList, player)
-        return
-    end
-
     local contents = armor_inventory.get_contents()
-    local armor
 
-    if Count(contents) > 0 then
-        player_inventory.insert({
-            name = "mini-power-armor"
+    if contents["mini-power-armor"] == 1 then
+        local armor = armor_inventory.find_item_stack("mini-power-armor")
+        local a_grid = armor.grid
+        a_grid.put({
+            name = "mini-fusion-reactor-equipment"
         })
-        armor = player_inventory.find_item_stack("mini-power-armor")
-    else
-        armor_inventory.insert({
-            name = "mini-power-armor"
+        a_grid.put({
+            name = "night-vision-equipment"
         })
-        armor = armor_inventory.find_item_stack("mini-power-armor")
+        a_grid.put({
+            name = "exoskeleton-equipment"
+        })
+        a_grid.put({
+            name = "personal-roboport-mk2-equipment"
+        })
+        a_grid.put({
+            name = "personal-roboport-mk2-equipment"
+        })
     end
-
-    local a_grid = armor.grid
-    a_grid.put({
-        name = "mini-fusion-reactor-equipment"
-    })
-    a_grid.put({
-        name = "night-vision-equipment"
-    })
-    a_grid.put({
-        name = "exoskeleton-equipment"
-    })
-    a_grid.put({
-        name = "personal-roboport-mk2-equipment"
-    })
-    a_grid.put({
-        name = "personal-roboport-mk2-equipment"
-    })
-    player_inventory.insert {
-        name = "fusion-construction-robot",
-        count = 50
-    }
 
     table.insert(global.PlayerList, player)
 end
