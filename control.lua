@@ -51,7 +51,7 @@ end
 function OnNthTick(event)
     local deregister = true
 
-    for k, player in pairs(game.players) do
+    for _, player in pairs(game.players) do
         if not Contains(global.PlayerList, player) then
             GiveArmor(player)
             deregister = false
@@ -85,6 +85,11 @@ function GiveArmor(player)
     if contents["mini-power-armor"] == 1 then
         local armor = armor_inventory.find_item_stack("mini-power-armor")
         local a_grid = armor.grid
+
+        for _, category in ipairs(a_grid.prototype.equipment_categories) do
+            print(category)
+        end
+
         a_grid.put({
             name = "mini-fusion-reactor-equipment"
         })
