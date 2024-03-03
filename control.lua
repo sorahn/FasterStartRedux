@@ -25,11 +25,6 @@ function OnInit()
 
         local items = remote.call("freeplay", "get_created_items")
         items["fusion-construction-robot"] = 50
-        items["mini-power-armor"] = 1
-        items["mini-fusion-reactor-equipment"] = 1
-        items["night-vision-equipment"] = 1
-        items["exoskeleton-equipment"] = 1
-        items["personal-roboport-mk2-equipment"] = 2
         remote.call("freeplay", "set_created_items", items)
     end
 end
@@ -86,18 +81,14 @@ function GiveArmor(player)
         local armor = armor_inventory.find_item_stack("mini-power-armor")
         local a_grid = armor.grid
 
-        for _, category in ipairs(a_grid.prototype.equipment_categories) do
-            print(category)
-        end
-
         a_grid.put({
             name = "mini-fusion-reactor-equipment"
         })
         a_grid.put({
-            name = "night-vision-equipment"
+            name = "exoskeleton-equipment"
         })
         a_grid.put({
-            name = "exoskeleton-equipment"
+            name = "night-vision-equipment"
         })
         a_grid.put({
             name = "personal-roboport-mk2-equipment"

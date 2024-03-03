@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.0.4
+Date: 2024-03-03
+  Bugfixes:
+    - Fusion robots aren now part of scenario starting items instead of inserting into debris\ship
+    - Armor and equipment for host player are now automatically inserted after cutscene
+    - Added compatabitility for K2 and K2+SE mods
+
+---------------------------------------------------------------------------------------------------
 Version: 0.0.3
 Date: 2023-10-05
   Bugfixes:
