@@ -25,6 +25,7 @@ function OnInit()
 
         local items = remote.call("freeplay", "get_created_items")
         items["fusion-construction-robot"] = 50
+        items["mini-power-armor"] = 1
         remote.call("freeplay", "set_created_items", items)
     end
 end

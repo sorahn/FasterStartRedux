@@ -4,7 +4,7 @@ local mod_graphics = "__FasterStartRedux__/graphics"
 
 data:extend({ {
     type = "equipment-grid",
-    name = "mini-armor-grid",
+    name = "mini-equipment-grid",
     width = 6,
     height = 4,
     equipment_categories = { "armor" }
@@ -46,7 +46,7 @@ data:extend({ {
     order = "c[modular-armor]-a[mini-power-armor]",
     stack_size = 1,
     infinite = true,
-    equipment_grid = "mini-armor-grid",
+    equipment_grid = "mini-equipment-grid",
     inventory_size_bonus = 10
 }, {
     type = "generator-equipment",
