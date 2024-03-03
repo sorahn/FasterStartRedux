@@ -22,11 +22,6 @@ function OnInit()
     if remote.interfaces["freeplay"] then
         remote.call("freeplay", "set_disable_crashsite", settings.startup['disable-crashsite'].value)
         remote.call("freeplay", "set_skip_intro", settings.startup['skip-intro'].value)
-
-        local items = remote.call("freeplay", "get_created_items")
-        items["fusion-construction-robot"] = 50
-        items["mini-power-armor"] = 1
-        remote.call("freeplay", "set_created_items", items)
     end
 end
 
@@ -44,28 +39,17 @@ end
 
 -- script.on_configuration_changed(OnConfigurationChanged)
 
-function OnNthTick(event)
-    local deregister = true
-
-    for _, player in pairs(game.players) do
-        if not Contains(global.PlayerList, player) then
-            GiveArmor(player)
-            deregister = false
-        end
-    end
-
-    if deregister then
-        script.on_nth_tick(69, nil)
-    end
-end
-
 function OnPlayerSpawned(event)
     local player = game.get_player(event.player_index)
     GiveArmor(player)
 end
 
+function OnCutsceneEnd(event)
+    CheckAllPlayers()
+end
+
 script.on_event({ defines.events.on_player_joined_game, defines.events.on_player_created }, OnPlayerSpawned)
-script.on_nth_tick(69, OnNthTick)
+script.on_event({ defines.events.on_cutscene_cancelled, defines.events.on_cutscene_finished}, OnCutsceneEnd)
 
 function GiveArmor(player)
     if Contains(global.PlayerList, player) then
@@ -75,27 +59,31 @@ function GiveArmor(player)
         return
     end
 
-    local armor_inventory = player.character.get_inventory(defines.inventory.character_armor)
-    local contents = armor_inventory.get_contents()
+    player.insert{ name = "fusion-construction-robot", count = 50 }
+    player.insert{ name = "mini-power-armor", count = 1 }
 
+    local armor_inventory = player.character.get_inventory(defines.inventory.character_armor)
+    local player_inventory = player.character.get_inventory(defines.inventory.character_main)
+    local contents = armor_inventory.get_contents()
+        
     if contents["mini-power-armor"] == 1 then
         local armor = armor_inventory.find_item_stack("mini-power-armor")
         local a_grid = armor.grid
 
         a_grid.put({
-            name = "mini-fusion-reactor-equipment"
-        })
-        a_grid.put({
             name = "exoskeleton-equipment"
         })
         a_grid.put({
+            name = "personal-roboport-mk2-equipment"
+        })
+        a_grid.put({
+            name = "personal-roboport-mk2-equipment"
+        })
+        a_grid.put({
+            name = "mini-fusion-reactor-equipment"
+        })
+        a_grid.put({
             name = "night-vision-equipment"
-        })
-        a_grid.put({
-            name = "personal-roboport-mk2-equipment"
-        })
-        a_grid.put({
-            name = "personal-roboport-mk2-equipment"
         })
     end
 
