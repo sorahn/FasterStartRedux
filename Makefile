@@ -9,7 +9,6 @@ EXCLUDE_FILES := \
 	.vscode\/* \
 	*.zip \
 	Makefile \
-	node_modules \
 	README.md
 
 # Define the default target
