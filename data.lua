@@ -22,7 +22,7 @@ data:extend({ {
     type = "item",
     name = "mini-fusion-reactor-equipment",
     icons = { {
-        icon = "__base__/graphics/icons/fusion-reactor-equipment.png",
+        icon = mod_graphics .. "/icons/fusion-reactor-equipment.png",
         tint = {
             r = 0.53,
             g = 0.81,
@@ -32,7 +32,7 @@ data:extend({ {
     } },
     icon_size = 64,
     icon_mipmaps = 4,
-    placed_as_equipment_result = "mini-fusion-reactor-equipment",
+    place_as_equipment_result = "mini-fusion-reactor-equipment",
     subgroup = "equipment",
     order = "a[energy-source]-b[fusion-reactor]-a[mini-fusion-reactor-equipment]",
     stack_size = 20
